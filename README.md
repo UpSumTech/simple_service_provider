@@ -2,6 +2,7 @@
 
 This gem provides a simple interface for your service objects.
 
+[![Gem Version](https://badge.fury.io/rb/simple_service_provider.png)](http://badge.fury.io/rb/simple_service_provider)
 [![Build Status](https://travis-ci.org/sumanmukherjee03/simple_service_provider.png)](https://travis-ci.org/sumanmukherjee03/simple_service_provider)
 [![Code Climate](https://codeclimate.com/github/sumanmukherjee03/simple_service_provider.png)](https://codeclimate.com/github/sumanmukherjee03/simple_service_provider)
 [![Dependency Status](https://gemnasium.com/sumanmukherjee03/simple_service_provider.png)](https://gemnasium.com/sumanmukherjee03/simple_service_provider)
