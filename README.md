@@ -2,9 +2,11 @@
 
 This gem provides a simple interface for your service objects.
 
-### Build Status
-
 [![Build Status](https://travis-ci.org/sumanmukherjee03/simple_service_provider.png)](https://travis-ci.org/sumanmukherjee03/simple_service_provider)
+[![Code Climate](https://codeclimate.com/github/sumanmukherjee03/simple_service_provider.png)](https://codeclimate.com/github/sumanmukherjee03/simple_service_provider)
+[![Dependency Status](https://gemnasium.com/sumanmukherjee03/simple_service_provider.png)](https://gemnasium.com/sumanmukherjee03/simple_service_provider)
+[![Coverage Status](https://coveralls.io/repos/sumanmukherjee03/simple_service_provider/badge.png)](https://coveralls.io/r/sumanmukherjee03/simple_service_provider)
+
 
 ## Installation
 
@@ -21,7 +23,10 @@ Or install it yourself as:
     $ gem install simple_service_provider
 
 ## Usage
-
+Create a Single Responsible service object class by inheriting from ```SimpleServiceProvider::Base```.
+This gem depends on Virtus, so you can use the ```DummyConsultant.attribute``` method to declare the attributes.
+Also, you can use Rails like validations for your service object.
+The DummyConsultant class needs to define 2 methods - ```DummyConsultant#run``` and ```DummyConsultant#run!```
 ```ruby
   class DummyConsultant < SimpleServiceProvider::Base
     attribute :foo, String
@@ -36,14 +41,21 @@ Or install it yourself as:
       puts "Performing the task!"
     end
   end
-
-  dummy = DummyConsultant.new(:foo => "bar")
-
-  # work and work! are the interfaces to be used for performing the task
-  # DummyConsultant#work! is the harsher variant of DummyConsultant#work
-  dummy.work # Performing the task
-  dummy.work! # Performing the task!
 ```
+The ```DummyConsultant#run``` provides an implementation that does not mutate the service object itself.
+The ```DummyConsultant#run!``` provides an implementation that mutates the service object itself.
+Or it can also represent a dangerous version of run. One that can raise an error.
+If a separate implementation of run! is not needed, then it's implementation defaults to run.
+
+While performing the task on the service, the gem provides 2 convenience methods - ```DummyConsultant#work``` and ```DummyConsultant#work!```
+The method ```work!``` is a more dangerous version of ```work```.
+```ruby
+  dummy = DummyConsultant.new(:foo => "bar")
+  dummy.work
+  dummy.work!
+```
+If the service object is not valid, ```work!``` will raise an exception.
+The method ```work``` will not raise any exception, but won't perform the task.
 
 ## Contributing
 
