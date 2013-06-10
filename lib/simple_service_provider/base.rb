@@ -27,7 +27,7 @@ module SimpleServiceProvider
     end
 
     def run!
-      raise NotImplementedError
+      run
     end
 
     private
